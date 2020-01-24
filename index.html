@@ -1,13 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-<meta name="apple-mobile-web-app-title" content="CodePen">
-<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
-<title>CodePen - AACoding03-6</title>
+
+<title>AA practice</title>
 <style>
 ul {
   background:lightblue;
@@ -24,7 +19,7 @@ ul {
 <body translate="no">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<audio id="sad" controls>
+<audio id="sad" style="display:none" controls>
 <source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
 Your browser does not support the audio tag
 </audio>
@@ -43,7 +38,7 @@ Your browser does not support the audio tag
 <li>\(4^3*2^3\) <input data-correct="512" /></li>
 <li>\(3(2+2a)\) <input data-correct="6+6a" /></li>
 <li>\(5^3\) <input data-correct="125" /></li>
-<li>\(3^6\) <input data-correct="729" /></li>
+<li>random problem* <span id="random1">1</span> + <span id="random2">1</span> <input id="random3" data-correct="5" /></li>
 </ul>
 </form>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -51,8 +46,18 @@ Your browser does not support the audio tag
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script id="rendered-js">
 console.clear();
-
-
+var randomCorrect;
+function setRandom(){
+  var numOne = Math.floor(Math.random()*20);
+  var numTwo =  Math.floor(Math.random()*20);
+  console.log(numOne,numTwo);
+  randomCorrect = numOne + numTwo;
+  console.log(randomCorrect);
+  $("#random1").text(numOne);
+  $("#random2").text(numTwo);
+  $("#random3").data("correct",randomCorrect);
+}
+setRandom();
 console.log(sad);
 function playSad(evt){
   sad.play();
@@ -89,6 +94,7 @@ function reset(){
     document.getElementById("problems").reset();
     let theTime = $("#theTime").text();
     $("#theTime").text("0");
+    setRandom();
 }
 function upTime(){
   let theTime = $("#theTime").text();
